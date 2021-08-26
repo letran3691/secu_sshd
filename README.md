@@ -96,6 +96,10 @@ Lock password của users
 ![image](https://user-images.githubusercontent.com/19284401/130927930-a9bd918f-4d71-42f2-9972-01969970a162.png)
 
 Cuối cùng hãy đóng port 22 trong /etc/ssh/sshd_config và iptable. Làm xong nhớ restart lại iptable và sshd
+
+
+vài thứ bắt được sau khi cấu hình 
+![image](https://user-images.githubusercontent.com/19284401/130934082-6aea0211-3074-4530-b656-734a6da132be.png)
     
     
        
