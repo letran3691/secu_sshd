@@ -32,9 +32,11 @@ cấu hình xong nhớ restart ssh
             -A INPUT -s x.x.x.c -j ACCEPT
             -A INPUT -s x.x.x.d -j ACCEPT
             -A INPUT -s x.x.x.e -j ACCEPT 
-            #trong 5 phút chỉ cho phép 4 gói TCP/SYN từ 1 IP đến port 22 
+            #trong 5 phút chỉ cho phép 4 gói TCP/SYN từ 1 IP đến port 22-2244
             -A INPUT -p tcp -m tcp --dport 22 -m state --state NEW -m recent --set --name DEFAULT --rsource
             -A INPUT -p tcp -m tcp --dport 22 -m state --state NEW -m recent --update --seconds 300 --hitcount 4 --name DEFAULT --rsource -j DROP
+            -A INPUT -p tcp -m tcp --dport 2244 -m state --state NEW -m recent --set --name DEFAULT --rsource
+            -A INPUT -p tcp -m tcp --dport 2244 -m state --state NEW -m recent --update --seconds 300 --hitcount 4 --name DEFAULT --rsource -j DROP
             #Mở port ssh
             -A INPUT -p tcp -m state --state NEW -m tcp --dport 22 -j ACCEPT
             -A INPUT -p tcp -m state --state NEW -m tcp --dport 2244 -j ACCEPT
