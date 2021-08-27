@@ -46,19 +46,23 @@ cấu hình xong nhớ restart ssh
 
 Nhớ restart iptable
 
-Bgio sẽ sử dụng 1 module của Linux PAM (Pluggable Authentication Modules) để band account ssh fail >3 lần.
+Bgio sẽ sử dụng 1 module của Linux PAM (Pluggable Authentication Modules) để band account(theo địa chỉ IP) ssh fail >3 lần.
 
 mở file /etc/pam.d/system-auth
 
+    auth        required      pam_faillock.so preauth silent audit deny=3 even_deny_root unlock_time=300
     auth        required      pam_faillock.so preauth silent audit deny=3 unlock_time=300
     
+    auth        [default=die]  pam_faillock.so  authfail  audit  deny=3 even_deny_root unlock_time=300
     auth        [default=die]  pam_faillock.so  authfail  audit  deny=3  unlock_time=300`
     account     required      pam_faillock.so
 
 mở file /etc/pam.d/password-auth
-    
+
+    auth        required      pam_faillock.so preauth silent audit deny=3 even_deny_root unlock_time=300
     auth        required      pam_faillock.so preauth silent audit deny=3 unlock_time=300
     
+    auth        [default=die]  pam_faillock.so  authfail  audit  deny=3 even_deny_root unlock_time=300
     auth        [default=die]  pam_faillock.so  authfail  audit  deny=3  unlock_time=300
     account     required      pam_faillock.so
     
@@ -68,13 +72,14 @@ Các tham số
     
    - deny – used to define the number of attempts
     
-   - unlock_time – sets the time band account
+   - unlock_time – sets the time band account(trong ví dụ trên mình band 5p, trong thực thế có thêm đặt vào hơn. Như hệ thống của mình, mình để 1 ngày luôn)
     
     
 **chú ý: thứ tự các dòng rất quan trọng. nếu cấu hình sai tất các user có thể bị lock.**
 
 sau khi cấu hình xong 2 file sẽ giống thế này: 
-![image](https://user-images.githubusercontent.com/19284401/130925653-c2fa58c9-efd8-44d4-8488-314b0d2e1ab8.png)
+![image](https://user-images.githubusercontent.com/19284401/131115728-820418cf-eefb-4ab8-a9e0-26b26d25ccef.png)
+
 
 sau khi cấu hình xong restart lại sshd
 
