@@ -72,7 +72,7 @@ Các tham số
     
    - deny – used to define the number of attempts
     
-   - unlock_time – sets the time band account(trong ví dụ trên mình band 5p, trong thực thế có thêm đặt vào hơn. Như hệ thống của mình, mình để 1 ngày luôn)
+   - unlock_time – sets the time band account(trong ví dụ trên mình band 5p, trong thực thế có thể đặt vào hơn. Như hệ thống của mình, mình để 1 ngày luôn)
     
     
 **chú ý: thứ tự các dòng rất quan trọng. nếu cấu hình sai tất các user có thể bị lock.**
@@ -87,7 +87,7 @@ check faillock
     
     faillock # danh sach tất các user đã bị log
     
-    fail --reset #clear toàn bộ các tài khoản bị lock
+    faillock --reset #clear toàn bộ các tài khoản bị lock
     
     faillock --user abx --reset  clear 1 tài khoản
     
